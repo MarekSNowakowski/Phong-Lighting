@@ -12,10 +12,10 @@ public class Main extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-      //  MainPanel p = new MainPanel();
+        DrawPanel p = new DrawPanel();
 
 
-    //    this.add(p);
+        this.add(p);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
