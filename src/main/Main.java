@@ -1,4 +1,6 @@
-package main.gui;
+package main;
+
+import gui.DrawPanel;
 
 import javax.swing.*;
 import java.awt.*;

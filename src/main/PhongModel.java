@@ -11,20 +11,20 @@ public class PhongModel {
         Vector lightVectorNormalized = lightVector.normalize();
         Vector normalizedNormal = normal.normalize();
 
-        Vector refNorm = reflect(lightVectorNormalized, normalizedNormal).normalize();
-        Vector observerNorm = observerVector.normalize();
+        Vector refNormalized = reflection(lightVectorNormalized, normalizedNormal).normalize();
+        Vector observerNormalized = observerVector.normalize();
 
         return material.getKa() * lightSource.getAmbient() +
                 material.getKd() * lightSource.getIllumination() * normalizedNormal.scalarProduct(lightVectorNormalized) +
-                material.getKs() * lightSource.getIllumination() * Math.pow(refNorm.scalarProduct(observerNorm), material.getN());
+                material.getKs() * lightSource.getIllumination() * Math.pow(refNormalized.scalarProduct(observerNormalized), material.getN());
     }
 
-    private static Vector reflect(Vector normal, Vector lightVecNormalized) {
-        double product = lightVecNormalized.scalarProduct(normal);
+    private static Vector reflection(Vector lightVecNormalized, Vector normalNormalized) {
+        double product = lightVecNormalized.scalarProduct(normalNormalized);
 
-        double x = 2 * product * normal.getX() - lightVecNormalized.getX();
-        double y = 2 * product * normal.getY() - lightVecNormalized.getY();
-        double z = 2 * product * normal.getZ() - lightVecNormalized.getZ();
+        double x = 2 * product * normalNormalized.getX() - lightVecNormalized.getX();
+        double y = 2 * product * normalNormalized.getY() - lightVecNormalized.getY();
+        double z = 2 * product * normalNormalized.getZ() - lightVecNormalized.getZ();
 
         return new Vector(x, y, z);
     }

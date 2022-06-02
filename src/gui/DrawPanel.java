@@ -1,4 +1,4 @@
-package main.gui;
+package gui;
 
 import main.LightEmitter;
 import main.Material;
@@ -22,16 +22,16 @@ public class DrawPanel extends JPanel {
     public DrawPanel() {
         am = new ArrayList<>();
         material = new Material(0.2, 0.4, 0.3, 70, Color.BLUE);
-        material2 = new Material(0.1, 0.6, 0.75164, 50, Color.RED);
-        material3 = new Material(0.5, 0.8, 0.4, 10, Color.GREEN);
+        material2 = new Material(0.1, 0.6, 0.75, 50, Color.RED);
+        material3 = new Material(0.3, 0.7, 0.4, 20, Color.YELLOW);
         setSize(1600, 800);
         setPreferredSize(new Dimension(1600, 800));
-        setBackground(Color.BLACK);
+        setBackground(Color.GRAY);
         setVisible(true);
         this.setFocusable(true);
 
         observer = new Vector(-50, -50, 220);
-        ls = new LightEmitter(0.9, new Vector(200, 180, -450), 0.7);
+        ls = new LightEmitter(0.7, new Vector(200, 180, -450), 0.9);
 
     }
 
@@ -53,7 +53,7 @@ public class DrawPanel extends JPanel {
                     if(x*x + y*y <= r*r) {
                         double z = Math.sqrt(r * r - x * x - y * y);
                         normal = new Vector(2*x, 2*y, 2*z);
-                        double il = PhongModel.getLight(observer,  normal, ls, m);
+                        double il = PhongModel.getLight(observer,  normal, ls,  m);
                         Color color = m.getColor();
                         g.setColor(new Color(Math.min((int) (color.getRed()* il), 255),
                                 Math.min((int)(color.getGreen()* il), 255),
